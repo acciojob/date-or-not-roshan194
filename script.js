@@ -1,5 +1,6 @@
-function isDate(input) {
-    if (input instanceof Date && !isNaN(input)) {
+var isDate = function (input) {
+  //   write your code here
+	 if (input instanceof Date && !isNaN(input)) {
         return true; // Valid Date object
     }
     
@@ -9,8 +10,7 @@ function isDate(input) {
     }
 
     return false; // Other invalid cases
-}
-
+};
 
 // Do not change the code below.
 const input = prompt("Enter Date.");
