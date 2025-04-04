@@ -1,15 +1,17 @@
-var isDate = function(input) {
-    if (input instanceof Date && !isNaN(input)) {
-        return true; // Valid Date object
-    }
-    
-    if (typeof input === "string" || typeof input === "number") {
-        var parsedDate = new Date(input);
-        return !isNaN(parsedDate.getTime()); // Check if it's a valid date
-    }
+() => {
+  const dateStr = "2023-08-11"; // Return a valid date string
 
-    return false; // Other invalid cases
-};
+  cy.visit(baseUrl, {
+    onBeforeLoad(win) {
+      cy.stub(win, "prompt").onFirstCall().returns(dateStr); // Stub prompt with a valid date string
+    }
+  });
+
+  cy.on("window:alert", (str) => {
+    expect(str).to.equal("true"); // Expect alert to be the string "true"
+  });
+}
+
 
 // Do not change the code below.
 const input = prompt("Enter Date.");
